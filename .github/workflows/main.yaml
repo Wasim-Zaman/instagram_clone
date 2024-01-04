@@ -1,9 +1,11 @@
-name: Flutter Android Build
+name: Flutter Release Build
 
 on:
   push:
     branches:
       - main
+      # Add tags to trigger release build only on tag push
+      - 'v*' 
 
 jobs:
   build:
@@ -21,10 +23,10 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Build APK
+    - name: Build Release APK
       run: flutter build apk --release
 
-    - name: Archive APK
+    - name: Archive Release APK
       uses: actions/upload-artifact@v2
       with:
         name: app-release
