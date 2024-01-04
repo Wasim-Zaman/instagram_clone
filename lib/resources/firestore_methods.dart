@@ -32,6 +32,7 @@ class FireStoreMethods {
         profImage: profImage,
         datePublished: DateTime.now(),
         likes: [],
+        comments: [],
       ); // creating post object
 
       _firestore.collection('posts').doc(postId).set(post.toJson());
@@ -58,6 +59,40 @@ class FireStoreMethods {
           'likes': FieldValue.arrayUnion([uid])
         });
       }
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  // add comment
+  Future<String> postComment(
+    String postId,
+    String comment,
+    String uid,
+    String username,
+    String profImage,
+  ) async {
+    String res = "Some error occurred";
+    try {
+      if (comment.isEmpty) {
+        throw 'Comment cannot be empty';
+      }
+      String commentId = const Uuid().v1();
+      _firestore
+          .collection('posts')
+          .doc(postId)
+          .collection('comments')
+          .doc(commentId)
+          .set({
+        'commentId': commentId,
+        'comment': comment,
+        'uid': uid,
+        'username': username,
+        'profImage': profImage,
+        'datePublished': DateTime.now(),
+      });
       res = 'success';
     } catch (err) {
       res = err.toString();
