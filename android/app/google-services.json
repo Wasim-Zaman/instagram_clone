@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1047406277123",
+    "project_id": "instagram-clone-12d85",
+    "storage_bucket": "instagram-clone-12d85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047406277123:android:e06604c1fcae8710a05436",
+        "android_client_info": {
+          "package_name": "com.sairatec.instagram_clone_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJyv5Ha6RhuiY5RiaxADXgSMg0jbD47Do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
