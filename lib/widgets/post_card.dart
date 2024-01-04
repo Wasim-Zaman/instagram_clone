@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/models/user.dart';
 import 'package:instagram_clone_app/providers/user_provider.dart';
+import 'package:instagram_clone_app/resources/firestore_methods.dart';
 import 'package:instagram_clone_app/utils/colors.dart';
 import 'package:instagram_clone_app/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,15 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isAnimating = false;
+
+  likePost(String uid) async {
+    await FireStoreMethods().likePost(
+      widget.snap['postId'],
+      uid,
+      widget.snap['likes'],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     User user = context.read<UserProvider>().user!;
@@ -103,10 +113,13 @@ class _PostCardState extends State<PostCard> {
                 ),
               ),
               GestureDetector(
-                onDoubleTap: () {
-                  setState(() {
-                    isAnimating = true;
-                  });
+                onDoubleTap: () async {
+                  await likePost(user.uid);
+                  if (!widget.snap['likes'].contains(user.uid)) {
+                    setState(() {
+                      isAnimating = true;
+                    });
+                  }
                 },
                 child: AnimatedOpacity(
                   opacity: isAnimating ? 1 : 0,
@@ -138,7 +151,9 @@ class _PostCardState extends State<PostCard> {
                   isAnimating: widget.snap['likes'].contains(user.uid),
                   smallLike: true,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await likePost(user.uid);
+                    },
                     icon: Icon(
                       widget.snap['likes'].contains(user.uid)
                           ? Icons.favorite
