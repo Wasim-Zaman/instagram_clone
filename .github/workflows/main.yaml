@@ -22,7 +22,7 @@ jobs:
       run: flutter pub get
 
     - name: Build APK
-      run: flutter build apk
+      run: flutter build apk --release
 
     - name: Archive APK
       uses: actions/upload-artifact@v2
