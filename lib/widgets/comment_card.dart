@@ -24,6 +24,7 @@ class CommentCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  
                   RichText(
                     text: TextSpan(
                       children: [

@@ -36,7 +36,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
         if (context.mounted) showSnackBar(context, res);
       }
       setState(() {
-        commentEditingController.text = "";
+        commentEditingController.clear();
       });
     } catch (err) {
       showSnackBar(
@@ -62,8 +62,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
             .doc(widget.postId)
             .collection('comments')
             .snapshots(),
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
