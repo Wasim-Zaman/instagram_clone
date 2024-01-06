@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/models/user.dart';
 import 'package:instagram_clone_app/providers/user_provider.dart';
@@ -19,6 +20,13 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isAnimating = false;
+  int commentLen = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getLength();
+  }
 
   likePost(String uid) async {
     await FireStoreMethods().likePost(
@@ -26,6 +34,21 @@ class _PostCardState extends State<PostCard> {
       uid,
       widget.snap['likes'],
     );
+  }
+
+  void getLength() async {
+    try {
+      QuerySnapshot snap = await FirebaseFirestore.instance
+          .collection("posts")
+          .doc(widget.snap['postId'])
+          .collection('comments')
+          .get();
+      setState(() {
+        commentLen = snap.docs.length;
+      });
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -226,9 +249,9 @@ class _PostCardState extends State<PostCard> {
                 InkWell(
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: const Text(
-                      'View all comments',
-                      style: TextStyle(
+                    child: Text(
+                      'View all $commentLen comments',
+                      style: const TextStyle(
                         fontSize: 16,
                         color: secondaryColor,
                       ),
