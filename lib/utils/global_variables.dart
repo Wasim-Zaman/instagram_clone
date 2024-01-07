@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/screens/add_post_screen.dart';
 import 'package:instagram_clone_app/screens/feed_screen.dart';
+import 'package:instagram_clone_app/screens/search_screen.dart';
 import 'package:instagram_clone_app/utils/colors.dart';
 
 const webScreenSize = 600;
 
 var homeScreenChildren = [
   const FeedScreen(),
-  Container(
-    color: mobileBackgroundColor,
-    child: const Center(
-      child: Text("Search"),
-    ),
-  ),
+  const SearchScreen(),
   const AddPostScreen(),
   Container(
     color: mobileBackgroundColor,

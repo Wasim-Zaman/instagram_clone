@@ -91,39 +91,42 @@ class _PostCardState extends State<PostCard> {
                     ],
                   ),
                 )),
-                IconButton(
-                  onPressed: () {
-                    // show pop up
-                    showDialog(
-                      context: context,
-                      useRootNavigator: false,
-                      builder: (context) => Dialog(
-                        child: ListView(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shrinkWrap: true,
-                          children: ["Delete"]
-                              .map(
-                                (e) => InkWell(
-                                  onTap: () {
-                                    deletePost(widget.snap['postId']);
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 12,
-                                      horizontal: 16,
-                                    ),
-                                    child: Text(e),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
+                widget.snap['uid'] != user.uid
+                    ? Container()
+                    : IconButton(
+                        onPressed: () {
+                          // show pop up
+                          showDialog(
+                            context: context,
+                            useRootNavigator: false,
+                            builder: (context) => Dialog(
+                              child: ListView(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                shrinkWrap: true,
+                                children: ["Delete"]
+                                    .map(
+                                      (e) => InkWell(
+                                        onTap: () {
+                                          deletePost(widget.snap['postId']);
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 12,
+                                            horizontal: 16,
+                                          ),
+                                          child: Text(e),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.more_vert),
                       ),
-                    );
-                  },
-                  icon: const Icon(Icons.more_vert),
-                ),
               ],
             ),
           ),
