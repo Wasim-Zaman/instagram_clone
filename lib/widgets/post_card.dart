@@ -5,6 +5,7 @@ import 'package:instagram_clone_app/providers/user_provider.dart';
 import 'package:instagram_clone_app/resources/firestore_methods.dart';
 import 'package:instagram_clone_app/screens/comments_screen.dart';
 import 'package:instagram_clone_app/utils/colors.dart';
+import 'package:instagram_clone_app/utils/utils.dart';
 import 'package:instagram_clone_app/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -48,6 +49,14 @@ class _PostCardState extends State<PostCard> {
       });
     } catch (error) {
       print(error);
+    }
+  }
+
+  deletePost(String postId) async {
+    try {
+      await FireStoreMethods().deletePost(postId);
+    } catch (err) {
+      showSnackBar(context, err.toString());
     }
   }
 
@@ -95,7 +104,10 @@ class _PostCardState extends State<PostCard> {
                           children: ["Delete"]
                               .map(
                                 (e) => InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    deletePost(widget.snap['postId']);
+                                    Navigator.of(context).pop();
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 12,
