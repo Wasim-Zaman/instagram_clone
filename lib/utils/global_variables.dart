@@ -25,24 +25,9 @@ var homeScreenChildren = [
 ];
 
 var bottomNavigationBarItems = [
-  const BottomNavigationBarItem(
-    icon: Icon(Icons.home),
-    label: "",
-  ),
-  const BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    label: "",
-  ),
-  const BottomNavigationBarItem(
-    icon: Icon(Icons.add),
-    label: "",
-  ),
-  const BottomNavigationBarItem(
-    icon: Icon(Icons.favorite),
-    label: "",
-  ),
-  const BottomNavigationBarItem(
-    icon: Icon(Icons.person),
-    label: "",
-  ),
+  const BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+  const BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+  const BottomNavigationBarItem(icon: Icon(Icons.add), label: ""),
+  const BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ""),
+  const BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
 ];
