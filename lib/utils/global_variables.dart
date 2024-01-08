@@ -12,15 +12,11 @@ var homeScreenChildren = [
   const AddPostScreen(),
   Container(
     color: mobileBackgroundColor,
-    child: const Center(
-      child: Text("Favorite"),
-    ),
+    child: const Center(child: Text("Favorite")),
   ),
   Container(
     color: mobileBackgroundColor,
-    child: const Center(
-      child: Text("Profile"),
-    ),
+    child: const Center(child: Text("Profile")),
   ),
 ];
 
