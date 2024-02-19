@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         // ),
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: mobileBackgroundColor,
+          useMaterial3: true,
         ),
         // home: const ResponsiveLayout(
         //   mobileScreenLayout: MobileScreenLayout(),
