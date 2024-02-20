@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_app/resources/firestore_methods.dart';
 import 'package:instagram_clone_app/utils/colors.dart';
 import 'package:instagram_clone_app/utils/utils.dart';
 import 'package:instagram_clone_app/widgets/follow_button.dart';
@@ -137,17 +138,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 textColor: Colors.black,
                                                 borderColor: Colors.grey,
                                                 function: () async {
-                                                  // await FireStoreMethods()
-                                                  //     .followUser(
-                                                  //   FirebaseAuth.instance
-                                                  //       .currentUser!.uid,
-                                                  //   userData['uid'],
-                                                  // );
+                                                  await FireStoreMethods()
+                                                      .followUser(
+                                                    FirebaseAuth.instance
+                                                        .currentUser!.uid,
+                                                    userData['uid'],
+                                                  );
 
-                                                  // setState(() {
-                                                  //   isFollowing = false;
-                                                  //   followers--;
-                                                  // });
+                                                  setState(() {
+                                                    isFollowing = false;
+                                                    followers--;
+                                                  });
                                                 },
                                               )
                                             : FollowButton(
@@ -156,17 +157,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 textColor: Colors.white,
                                                 borderColor: Colors.blue,
                                                 function: () async {
-                                                  // await FireStoreMethods()
-                                                  //     .followUser(
-                                                  //   FirebaseAuth.instance
-                                                  //       .currentUser!.uid,
-                                                  //   userData['uid'],
-                                                  // );
+                                                  await FireStoreMethods()
+                                                      .followUser(
+                                                    FirebaseAuth.instance
+                                                        .currentUser!.uid,
+                                                    userData['uid'],
+                                                  );
 
-                                                  // setState(() {
-                                                  //   isFollowing = true;
-                                                  //   followers++;
-                                                  // });
+                                                  setState(() {
+                                                    isFollowing = true;
+                                                    followers++;
+                                                  });
                                                 },
                                               )
                                   ],
